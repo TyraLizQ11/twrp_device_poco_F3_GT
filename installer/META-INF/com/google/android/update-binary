@@ -36,8 +36,7 @@ find_boot_image() {
 	    BOOTIMAGE2=`find_block ramdisk_b recovery_ramdisk_b boot_b`
 	elif [ $SLOT = "_b" ]; then
 	    BOOTIMAGE2=`find_block ramdisk_a recovery_ramdisk_a boot_a`
-	fi
-
+	fi;
 }
 
 # detect Magisk Manager/booted flashing
@@ -46,10 +45,10 @@ ps | grep zygote | grep -v grep >/dev/null && BOOTMODE=true;
 $BOOTMODE || ps -A 2>/dev/null | grep zygote | grep -v grep >/dev/null && BOOTMODE=true;
 
 ui_print "###############################################";
-ui_print "#    TWRP installer for Xiaomi Redmi 10       #";
+ui_print "#    TWRP installer for Poco F3 GT Aresin     #";
 ui_print "#           by: MASTERSENPAI05                #";
 ui_print "#  source from osmosis, dees_troy, topjohnwu  #";
-ui_print "#     THANK YOU! THANK YOU! THANK YOU!        #";
+ui_print "#      POCO F3 GT && REDMI K40 Gaming         #";
 ui_print "##############################################$";
 ui_print " ";
 
@@ -61,6 +60,7 @@ if [ -e /dev/block/bootdevice/by-name/recovery_b ]; then
 else
   target=/dev/block/bootdevice/by-name/boot;
 fi;
+
 name=$(basename $target);
 
 ui_print "Unpacking the installer...";
