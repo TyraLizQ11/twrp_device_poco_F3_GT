@@ -1,2 +1,2 @@
 PRODUCT_MAKEFILES := \
-     $(LOCAL_DIR)/twrp_selene.mk
+     $(LOCAL_DIR)/twrp_aresin.mk
