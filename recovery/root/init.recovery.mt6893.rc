@@ -92,8 +92,11 @@ on property:vendor.sys.listeners.registered=true
 on property:vendor.sys.listeners.registered=true
     start vendor.keymaster-4-0-beanpod
 
-on property:hwservicemanager.ready=true
+on property:ro.boot.tee_type=2 property:hwservicemanager.ready=true
     start vendor.keymaster-4-0-beanpod
+    start gatekeeper-1-0
+
+on property:ro.boot.tee_type=1 && property:hwservicemanager.ready=true
     start vendor.keymaster-4-0-mitee
     start gatekeeper-1-0
     
