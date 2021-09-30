@@ -17,7 +17,7 @@
 LOCAL_PATH := device/poco/aresin
 
 # Dynamic Partitions
-BOARD_USE_DYNAMIC_PARTITIONS := true
+PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
 
 # DTB
@@ -83,3 +83,7 @@ TARGET_USES_MKE2FS := true
 TW_EXCLUDE_TWRPAPP := true
 TW_NO_SCREEN_BLANK := true
 TW_HAS_MTP := true
+
+# Mounting early
+PRODUCT_COPY_FILES += $(LOCAL_PATH)/fstab.mt6893:$(TARGET_COPY_OUT_RECOVERY)/root/first_stage_ramdisk/fstab.$(TARGET_BOARD_PLATFORM)
+
