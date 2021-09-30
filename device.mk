@@ -46,7 +46,8 @@ PRODUCT_PACKAGES += \
     cppreopts.sh \
     update_engine \
     update_verifier \
-    update_engine_sideload
+    update_engine_sideload \
+    bootctl
     
 PRODUCT_PACKAGES += \
     android.hardware.fastboot@1.0-impl-mock \
