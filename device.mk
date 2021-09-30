@@ -19,6 +19,10 @@ LOCAL_PATH := device/poco/aresin
 # Dynamic Partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
+# Health Hal
+PRODUCT_PACKAGES += \
+      android.hardware.health@2.1-service \
+      android.hardware.health@2.1-impl
 
 # DTB
 PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,$(LOCAL_PATH)/recovery/root,recovery/root) \
