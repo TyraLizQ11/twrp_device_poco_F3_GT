@@ -85,8 +85,6 @@ on property:property:vendor.sys.listeners.registered=true
     start gatekeeper-1-0
     
 on property:hwservicemanager.ready=true
-    start vendor.keymaster-4-0-mitee
-    start vendor.keymaster-4-0-beanpod
     start gatekeeper-1-0
     
 on property:ro.crypto.state=unsupported
