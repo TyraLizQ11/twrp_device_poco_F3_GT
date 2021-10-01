@@ -93,7 +93,7 @@ PRODUCT_PLATFORM := mt6893
 
 # Mounting early
 PRODUCT_COPY_FILES += $(LOCAL_PATH)/fstab.mt6893:$(TARGET_COPY_OUT_RECOVERY)/root/first_stage_ramdisk/fstab.$(PRODUCT_PLATFORM)
-PRODUCT_COPY_FILES += $(LOCAL_PATH)/fstab.mt6893:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.$(PRODUCT_PLATFORM)
+PRODUCT_COPY_FILES += $(LOCAL_PATH)/fstab.emmc:$(TARGET_COPY_OUT_RECOVERY)/root/first_stage_ramdisk/fstab.emmc
 
 # Mount Partition Early
 PRODUCT_SYSTEM_VERITY_PARTITION := /dev/block/bootdevice/by-name/system
