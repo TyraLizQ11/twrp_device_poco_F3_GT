@@ -88,6 +88,9 @@ TW_EXCLUDE_TWRPAPP := true
 TW_NO_SCREEN_BLANK := true
 TW_HAS_MTP := true
 
-# Mounting early
-PRODUCT_COPY_FILES += $(LOCAL_PATH)/fstab.mt6893:$(TARGET_COPY_OUT_RECOVERY)/root/first_stage_ramdisk/fstab.$(TARGET_BOARD_PLATFORM)
+# Platform
+PRODUCT_PLATFORM := mt6893
 
+# Mounting early
+PRODUCT_COPY_FILES += $(LOCAL_PATH)/fstab.mt6893:$(TARGET_COPY_OUT_RECOVERY)/root/first_stage_ramdisk/fstab.$(PRODUCT_PLATFORM)
+PRODUCT_COPY_FILES += $(LOCAL_PATH)/fstab.mt6893:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.$(PRODUCT_PLATFORM)
