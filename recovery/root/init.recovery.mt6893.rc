@@ -85,7 +85,9 @@ on property:vendor.sys.listeners.registered:=true && property:ro.boot.tee_type=2
     
 on property:hwservicemanager.ready=true
     start gatekeeper-1-0
-    
+    start miteelog
+    start tee-suplicant
+
 on property:ro.crypto.state=unsupported
     stop teei_daemon
     stop vendor.keymaster-4-0-beanpod
