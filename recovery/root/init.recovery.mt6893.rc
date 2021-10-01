@@ -80,6 +80,8 @@ on property:hwservicemanager.ready=true && property:ro.boot.tee_type=2
 on property:hwservicemanager.ready=true && property:ro.boot.tee_type=1
     stop vendor.keymaster-4-0-beanpod
     start vendor.keymaster-4-0-mitee
+    start miteelog
+    start tee-supplicant
 
 on property:hwservicemanager.ready=true
     start gatekeeper-1-0
