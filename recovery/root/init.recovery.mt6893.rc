@@ -83,6 +83,8 @@ on property:vendor.sys.listeners.registered=true && property:ro.boot.tee_type=1
 on property:vendor.sys.listeners.registered:=true && property:ro.boot.tee_type=2
     start vendor.keymaster-4-0-beanpod
     stop vendor.keymaster-4-0-mitee
+    stop miteelog
+    stop tee-suplicant
     
 on property:hwservicemanager.ready=true
     start gatekeeper-1-0
