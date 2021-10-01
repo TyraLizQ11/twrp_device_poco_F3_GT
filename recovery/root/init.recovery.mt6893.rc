@@ -80,6 +80,15 @@ on property:vendor.sys.listeners.registered=true && property:ro.boot.tee_type=1
 on property:vendor.sys.listeners.registered:=true && property:ro.boot.tee_type=2
     start vendor.keymaster-4-0-beanpod
     stop vendor.keymaster-4-0-mitee
+
+on property:hwservicemanager.ready=true && property:ro.boot.tee_type=2
+    start vendor.keymaster-4-0-beanpod
+    stop vendor.keymaster-4-0-mitee
+
+on property:hwservicemanager.ready=true && property:ro.boot.tee_type=1
+    stop vendor.keymaster-4-0-beanpod
+    start vendor.keymaster-4-0-mitee
+
 on property:hwservicemanager.ready=true
     start gatekeeper-1-0
 #    start miteelog
@@ -87,8 +96,6 @@ on property:hwservicemanager.ready=true
 
 on property:ro.crypto.state=unsupported
     stop teei_daemon
-    stop miteelog
-    stop tee-suplicant
     stop vendor.keymaster-4-0-beanpod
     stop vendor.keymaster-4-0-mitee
     stop vendor.gatekeeper-1-0
@@ -97,8 +104,6 @@ on property:ro.crypto.state=unsupported
 
 on property:ro.crypto.state=unencrypted
     stop teei_daemon
-    stop miteelog
-    stop tee-suplicant
     stop vendorkeymaster-4-0-beanpod
     stop vendor.keymaster-4-0-mitee
     stop gatekeeper-1-0
@@ -107,8 +112,6 @@ on property:ro.crypto.state=unencrypted
 
 on property:twrp.decrypt.done=true
     stop teei_daemon
-    stop miteelog
-    stop tee-suplicant
     stop vendor.keymaster-4-0-beanpod
     stop vendor.keymaster-4-0-mitee
     stop gatekeeper-1-0
