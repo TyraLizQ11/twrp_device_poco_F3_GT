@@ -53,7 +53,8 @@ AB_OTA_PARTITIONS += \
     product \
     system \
     system_ext \
-    vbmeta \
+    vbmeta_system \
+    vbemeta_vendor \
     vendor
 
 # Kernel
