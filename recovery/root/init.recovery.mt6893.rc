@@ -2,7 +2,6 @@
 import /init.recovery.microtrust.rc
 import /miteelog.rc
 import /tee-suplicant.rc
-import /miui.factoryreset.fstab
 
 on post-fs
     # Support A/B feature for EMMC and UFS boot region
