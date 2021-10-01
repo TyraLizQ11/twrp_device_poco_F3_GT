@@ -100,3 +100,7 @@ PRODUCT_SYSTEM_VERITY_PARTITION := /dev/block/bootdevice/by-name/system
 PRODUCT_VENDOR_VERITY_PARTITION := /dev/block/bootdevice/by-name/vendor
 CUSTOM_IMAGE_VERITY_BLOCK_DEVICE := /dev/block/bootdevice/by-name/odm
 CUSTOM_IMAGE_VERITY_BLOCK_DEVICE := /dev/block/bootdevice/by-name/system_ext
+
+# Installer
+USE_RECOVERY_INSTALLER := true
+RECOVERY_INSTALLER_PATH := $(LOCAL_PATH)/installer

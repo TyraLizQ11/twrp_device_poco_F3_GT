@@ -12,32 +12,7 @@ ui_print() {
     echo -e "ui_print $1\nui_print" >> $OUTFD;
   fi;
 }
-abort() {
-	echo -e  "ui_print $1"; exit 1;
-}
-
-grep_cmdline() {
-  local REGEX="s/^$1=//p"
-  cat /proc/cmdline | tr '[:space:]' '\n' | sed -n "$REGEX" 2>/dev/null
-}
-
-find_boot_image() {
-  BOOTIMAGE=
-  # Check A/B slot
-  SLOT=`grep_cmdline androidboot.slot_suffix`
-  if [ -z $SLOT ]; then
-    SLOT=`grep_cmdline androidboot.slot`
-    [ -z $SLOT ] || SLOT=_${SLOT}
-  fi
-  [ -z $SLOT ] || ui_print "- Current boot slot: $SLOT"
-
-  BOOTIMAGE=`find_block ramdisk$SLOT recovery_ramdisk$SLOT boot$SLOT`
-	if  [ $SLOT = "_a" ]; then
-	    BOOTIMAGE2=`find_block ramdisk_b recovery_ramdisk_b boot_b`
-	elif [ $SLOT = "_b" ]; then
-	    BOOTIMAGE2=`find_block ramdisk_a recovery_ramdisk_a boot_a`
-	fi;
-}
+abort() { ui_print "$1"; exit 1; }
 
 # detect Magisk Manager/booted flashing
 BOOTMODE=false;
@@ -45,10 +20,10 @@ ps | grep zygote | grep -v grep >/dev/null && BOOTMODE=true;
 $BOOTMODE || ps -A 2>/dev/null | grep zygote | grep -v grep >/dev/null && BOOTMODE=true;
 
 ui_print "###############################################";
-ui_print "#    TWRP installer for Poco F3 GT Aresin     #";
+ui_print "#   TWRP installer for Xiaomi Ares / Aresin   #";
 ui_print "#           by: MASTERSENPAI05                #";
 ui_print "#  source from osmosis, dees_troy, topjohnwu  #";
-ui_print "#      POCO F3 GT && REDMI K40 Gaming         #";
+ui_print "#     THANK YOU! THANK YOU! THANK YOU!        #";
 ui_print "##############################################$";
 ui_print " ";
 
@@ -60,7 +35,6 @@ if [ -e /dev/block/bootdevice/by-name/recovery_b ]; then
 else
   target=/dev/block/bootdevice/by-name/boot;
 fi;
-
 name=$(basename $target);
 
 ui_print "Unpacking the installer...";
