@@ -71,10 +71,8 @@ TW_THEME := portrait_hdpi
 RECOVERY_SDCARD_ON_DATA := true
 TW_EXCLUDE_DEFAULT_USB_INIT := true
 TW_INCLUDE_FBE_METADATA_DECRYPT := true
-TW_HAS_NO_RECOVERY_PARTITION := true
 TW_EXTRA_LANGUAGES := true
 TW_INCLUDE_NTFS_3G := true
-TW_USE_TOOLBOX := true
 TW_INPUT_BLACKLIST := "hbtp_vm"
 TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
 TW_MAX_BRIGHTNESS := 2047
@@ -106,7 +104,7 @@ CUSTOM_IMAGE_VERITY_BLOCK_DEVICE := /dev/block/bootdevice/by-name/system_ext
 
 # Installer
 USE_RECOVERY_INSTALLER := true
-RECOVERY_INSTALLER_PATH := $(LOCAL_PATH)/installer
+RECOVERY_INSTALLER_PATH += $(LOCAL_PATH)/installer
 
 TARGET_RECOVERY_DEVICE_MODULES += \
     libkeymaster4 \
