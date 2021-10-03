@@ -46,7 +46,13 @@ service keystore /system/bin/keystore /tmp/misc/keystore
     group root drmrpc readproc
     disabled
     seclabel u:r:recovery:s0
-      
+
+service predecrypt /vendor/bin/predecrypt.sh
+    user root
+    group root
+    disabled
+    seclabel u:r:recovery:s0
+
 service gatekeeper-1-0 /vendor/bin/hw/android.hardware.gatekeeper@1.0-service
     user root
     group root
@@ -115,3 +121,4 @@ on property:twrp.decrypt.done=true
 on boot
     start boot-hal-1-1
     start health-hal-2-1
+    start predecrypt.sh
