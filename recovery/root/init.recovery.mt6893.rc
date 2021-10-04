@@ -85,6 +85,7 @@ on property:ro.crypto.state=unsupported
     stop vendor.keymaster-4-0-mitee
     stop vendor.gatekeeper-1-0
     stop hwservicemanager
+    stop servicemanager
 
 on property:ro.crypto.state=unencrypted
     stop teei_daemon
@@ -92,14 +93,15 @@ on property:ro.crypto.state=unencrypted
     stop vendor.keymaster-4-0-mitee
     stop gatekeeper-1-0
     stop hwservicemanager
+    stop servicemanager
     
 on property:twrp.decrypt.done=true
     stop teei_daemon
     stop vendor.keymaster-4-0-beanpod
     stop vendor.keymaster-4-0-mitee
     stop gatekeeper-1-0
-    stop hwservicemanager
-    
+    start hwservicemanager
+    start servicemanager
         
 on boot
     start boot-hal-1-1
