@@ -30,7 +30,8 @@ on init
     symlink /dev/block/platform/bootdevice /dev/block/bootdevice
     mkdir /mnt/vendor/persist 0700 root root
     mount ext4 /dev/block/platform/bootdevice/by-name/persist /mnt/vendor/persist 
-
+    export LD_LIBRARY_PATH /system/lib64:/vendor/lib64:/vendor/lib64/hw:/sbin
+    
 on fs
     install_keyring 
 
@@ -47,13 +48,7 @@ service keystore /system/bin/keystore /tmp/misc/keystore
     disabled
     seclabel u:r:recovery:s0
 
-service predecrypt /vendor/bin/predecrypt.sh
-    user root
-    group root
-    disabled
-    seclabel u:r:recovery:s0
-
-service gatekeeper-1-0 /vendor/bin/hw/android.hardware.gatekeeper@1.0-service
+service gatekeeper-1-0 /system/bin/android.hardware.gatekeeper@1.0-service
     user root
     group root
     disabled
@@ -67,13 +62,13 @@ service mtk.plpath.utils.link /system/bin/mtk_plpath_utils
     disabled
     seclabel u:r:recovery:s0
     
-service vendor.keymaster-4-0-beanpod /vendor/bin/hw/android.hardware.keymaster@4.0-service.beanpod
+service vendor.keymaster-4-0-beanpod /system/bin/android.hardware.keymaster@4.0-service.beanpod
     user root
     group root drmrpc
     disabled
     seclabel u:r:recovery:s0
 
-service vendor.keymaster-4-0-mitee /vendor/bin/hw/android.hardware.keymaster@4.0-service.mitee
+service vendor.keymaster-4-0-mitee /system/bin/android.hardware.keymaster@4.0-service.mitee
     user root
     group root drmrpc
     disabled
