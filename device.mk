@@ -41,7 +41,6 @@ AB_OTA_POSTINSTALL_CONFIG += \
 PRODUCT_PACKAGES += \
     android.hardware.boot@1.1-impl.recovery \
     android.hardware.boot@1.1-impl
-    bootctrl.$(PRODUCT_PLATFORM).recovery
 
 PRODUCT_PACKAGES_DEBUG += \
     update_engine_client
@@ -88,7 +87,6 @@ TW_NO_SCREEN_BLANK := true
 TW_HAS_MTP := true
 TW_EXCLUDE_APEX := true
 TW_INCLUDE_RESETPROP := true
-TW_INCLUDE_INJECTTWRP := true
 
 # Platform
 PRODUCT_PLATFORM := mt6893
