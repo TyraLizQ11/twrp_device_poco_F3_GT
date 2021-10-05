@@ -4,7 +4,6 @@ service tee-supplicant /vendor/bin/tee-supplicant
     user root
     group root
     disabled
-    oneshot
     seclabel u:r:recovery:s0
 
 on fs && property:ro.boot.tee_type=1
