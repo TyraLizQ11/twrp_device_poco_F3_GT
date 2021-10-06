@@ -1,4 +1,4 @@
-service miteelog /vendor/bin/miteelog
+service miteelog /system/bin/miteelog
     class core
     user root
     group root
