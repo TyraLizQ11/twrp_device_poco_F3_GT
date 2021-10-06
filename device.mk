@@ -26,7 +26,7 @@ PRODUCT_PACKAGES += \
 
 # DTB
 PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,$(LOCAL_PATH)/recovery/root,recovery/root) \
-            $(LOCAL_PATH)/prebuilt/dtb.img:dtb.img
+            $(LOCAL_PATH)/prebuilt/dtb:dtb.img
 
 # A/B
 ENABLE_VIRTUAL_AB := true
@@ -47,11 +47,10 @@ PRODUCT_PACKAGES_DEBUG += \
 
 PRODUCT_PACKAGES += \
     otapreopt_script \
-    cppreopts.sh \
     update_engine \
     update_verifier \
     update_engine_sideload \
-    bootctl
+    
     
 PRODUCT_PACKAGES += \
     android.hardware.fastboot@1.0-impl-mock \
@@ -71,11 +70,10 @@ TW_THEME := portrait_hdpi
 RECOVERY_SDCARD_ON_DATA := true
 TW_EXCLUDE_DEFAULT_USB_INIT := true
 TW_INCLUDE_FBE_METADATA_DECRYPT := true
-TW_HAS_NO_RECOVERY_PARTITION := true
 TW_EXTRA_LANGUAGES := true
 TW_INCLUDE_NTFS_3G := true
-TW_USE_TOOLBOX := true
 TW_INPUT_BLACKLIST := "hbtp_vm"
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /config/usb_gadget/g1/functions/mass_storage.0/lun.%d/file
 TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
 TW_MAX_BRIGHTNESS := 2047
 TW_DEFAULT_BRIGHTNESS := 1200
@@ -87,10 +85,25 @@ TARGET_USES_MKE2FS := true
 TW_EXCLUDE_TWRPAPP := true
 TW_NO_SCREEN_BLANK := true
 TW_HAS_MTP := true
+TW_EXCLUDE_APEX := true
+TW_INCLUDE_RESETPROP := true
+TW_HAS_BOOT_PARTITION := true
 
 # Platform
 PRODUCT_PLATFORM := mt6893
 
-# Mounting early
-PRODUCT_COPY_FILES += $(LOCAL_PATH)/fstab.mt6893:$(TARGET_COPY_OUT_RECOVERY)/root/first_stage_ramdisk/fstab.$(PRODUCT_PLATFORM)
-PRODUCT_COPY_FILES += $(LOCAL_PATH)/fstab.mt6893:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.$(PRODUCT_PLATFORM)
+# Installer
+USE_RECOVERY_INSTALLER := true
+RECOVERY_INSTALLER_PATH += $(LOCAL_PATH)/installer
+
+TARGET_RECOVERY_DEVICE_MODULES += \
+    libkeymaster4 \
+    libpuresoftkeymasterdevice \
+    ashmemd_aidl_interface-cpp \
+    libashmemd_client
+
+TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libkeymaster4.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libpuresoftkeymasterdevice.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/ashmemd_aidl_interface-cpp.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libashmemd_client.so

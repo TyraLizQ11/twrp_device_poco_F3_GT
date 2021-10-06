@@ -34,7 +34,7 @@ $(call inherit-product, vendor/twrp/config/common.mk)
 PRODUCT_DEVICE := aresin
 PRODUCT_NAME := twrp_aresin
 PRODUCT_BRAND := Poco
-PRODUCT_MODEL := Poco F3 GT
+PRODUCT_MODEL := Poco F3 GT,Redmi K40 Gaming
 PRODUCT_MANUFACTURER := xiaomi
 
 
