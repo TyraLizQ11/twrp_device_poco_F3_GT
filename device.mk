@@ -26,7 +26,7 @@ PRODUCT_PACKAGES += \
 
 # DTB
 PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,$(LOCAL_PATH)/recovery/root,recovery/root) \
-            $(LOCAL_PATH)/prebuilt/dtb:dtb.img
+            $(LOCAL_PATH)/prebuilt/dtb.img:dtb.img
 
 # A/B
 ENABLE_VIRTUAL_AB := true
