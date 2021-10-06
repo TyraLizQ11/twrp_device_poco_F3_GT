@@ -77,8 +77,6 @@ TARGET_USE_CUSTOM_LUN_FILE_PATH := /config/usb_gadget/g1/functions/mass_storage.
 TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
 TW_MAX_BRIGHTNESS := 2047
 TW_DEFAULT_BRIGHTNESS := 1200
-TW_Y_OFFSET := 80
-TW_H_OFFSET := -80
 TWRP_INCLUDE_LOGCAT := true
 TARGET_USES_LOGD := true
 TARGET_USES_MKE2FS := true
@@ -91,10 +89,6 @@ TW_HAS_BOOT_PARTITION := true
 
 # Platform
 PRODUCT_PLATFORM := mt6893
-
-# Installer
-USE_RECOVERY_INSTALLER := true
-RECOVERY_INSTALLER_PATH += $(LOCAL_PATH)/installer
 
 TARGET_RECOVERY_DEVICE_MODULES += \
     libkeymaster4 \
