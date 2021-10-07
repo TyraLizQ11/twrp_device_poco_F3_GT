@@ -53,8 +53,7 @@ PRODUCT_PACKAGES += \
     
     
 PRODUCT_PACKAGES += \
-    android.hardware.fastboot@1.0-impl-mock \
-    fastbootd
+    android.hardware.fastboot@1.0-impl-mock
 
 # VNDK
 PRODUCT_TARGET_VNDK_VERSION := 30
