@@ -3,6 +3,10 @@ import /init.microtrust.rc
 import /init.miteelog.rc
 import /init.tee-supplicant.rc
 
+on init
+    export LD_LIBRARY_PATH /system/lib64:/vendor/lib64:/vendor/lib64/hw
+
+
 on post-fs
     # Support A/B feature for EMMC and UFS boot region
     symlink /dev/block/sda /dev/block/mmcblk0boot0
@@ -65,10 +69,10 @@ service keymaster-4-0-mitee /system/bin/android.hardware.keymaster@4.0-service.m
     disabled
     seclabel u:r:recovery:s0
     
-on property:vendor.sys.listeners.registered=true && property:ro.boot.tee_type=1
+on property:vendor.sys.listener.registered=true && property:ro.boot.tee_type=1
     start keymaster-4-0-mitee
     
-on property:vendor.sys.listeners.registered:=true && property:ro.boot.tee_type=2
+on property:vendor.sys.listener.registered:=true && property:ro.boot.tee_type=2
     start keymaster-4-0-beanpod
     
 on property:hwservicemanager.ready=true && property:ro.boot.tee_type=1
