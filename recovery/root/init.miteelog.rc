@@ -3,6 +3,7 @@ service miteelog /system/bin/miteelog
     user root
     group root
     disabled
+    oneshot
     seclabel u:r:recovery:s0
 
 on post-fs-data && property:ro.boot.tee_type=1
