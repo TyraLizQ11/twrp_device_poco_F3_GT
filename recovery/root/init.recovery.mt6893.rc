@@ -2,6 +2,8 @@
 import /init.microtrust.rc
 import /init.miteelog.rc
 import /init.tee-supplicant.rc
+import /init.miui.early_boot.sh
+import /init.miui.post_boot.sh
 
 on init
     export LD_LIBRARY_PATH /system/lib64:/vendor/lib64:/vendor/lib64/hw
@@ -52,29 +54,30 @@ service gatekeeper-1-0 /system/bin/android.hardware.gatekeeper@1.0-service
     seclabel u:r:recovery:s0
 
 service mtk.plpath.utils.link /system/bin/mtk_plpath_utils
+    class main
     user root
     group root system
     disabled
+    oneshot
     seclabel u:r:recovery:s0
     
 service keymaster-4-0-beanpod /system/bin/android.hardware.keymaster@4.0-service.beanpod
     user root
     group root drmrpc
     disabled
+    oneshot
     seclabel u:r:recovery:s0
 
 service keymaster-4-0-mitee /system/bin/android.hardware.keymaster@4.0-service.mitee
     user root
     group root drmrpc
     disabled
+    oneshot
     seclabel u:r:recovery:s0
-    
-on property:vendor.sys.listener.registered=true && property:ro.boot.tee_type=1
-    start keymaster-4-0-mitee
-    
-on property:vendor.sys.listener.registered:=true && property:ro.boot.tee_type=2
-    start keymaster-4-0-beanpod
-    
+
+on property:hwservicemanager.ready=true
+    start gatekeeper-1-0
+        
 on property:hwservicemanager.ready=true && property:ro.boot.tee_type=1
     start keymaster-4-0-mitee
     stop keymaster-4-0-beanpod
@@ -82,9 +85,12 @@ on property:hwservicemanager.ready=true && property:ro.boot.tee_type=1
 on property:hwservicemanager.ready=true && property:ro.boot.tee_type=2
     start keymaster-4-0-beanpod
     stop keymaster-4-0-mitee
+
+on property:vendor.sys.listener.registered=true && property:ro.boot.tee_type=1
+    start keymaster-4-0-mitee
     
-on property:hwservicemanager.ready=true
-    start gatekeeper-1-0
+on property:vendor.sys.listener.registered:=true && property:ro.boot.tee_type=2
+    start keymaster-4-0-beanpod
     
 on property:ro.crypto.state=unsupported
     stop teei_daemon
