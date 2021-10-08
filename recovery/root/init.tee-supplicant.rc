@@ -4,6 +4,7 @@ service tee-supplicant /system/bin/tee-supplicant
     user root
     group root
     disabled
+    oneshot
     seclabel u:r:recovery:s0
 
 
